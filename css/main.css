@@ -1901,12 +1901,12 @@ pre .javascript .function {
 }
 
 .sidebar-nav .sidebar-nav-active {
-    color: #FF5511;
-    border-bottom-color: #FF5511;
+    color: #FFDEAD;
+    border-bottom-color: #FFDEAD;
 }
 
 .sidebar-nav .sidebar-nav-active:hover {
-    color: #FF5511;
+    color: #FFDEAD;
 }
 
 .sidebar-panel {
@@ -1980,16 +1980,16 @@ pre .javascript .function {
 }
 
 .post-toc .nav .active > a {
-    color: #FF5511;
-    border-bottom-color: #FF5511;
+    color: #FFDEAD;
+    border-bottom-color: #FFDEAD;
 }
 
 .post-toc .nav .active-current > a {
-    color: #FF5511;
+    color: #FFDEAD;
 }
 
 .post-toc .nav .active-current > a:hover {
-    color: #FF5511;
+    color: #FFDEAD;
 }
 
 .footer {
@@ -2542,7 +2542,7 @@ a.search-result {
 }
 
 .page-post-detail .sidebar-toggle-line {
-    background: #FF5511;
+    background: #FFDEAD;
 }
 
 .page-post-detail .comments {

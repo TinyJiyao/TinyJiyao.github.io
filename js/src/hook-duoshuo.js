@@ -20,7 +20,11 @@ function hookTemplate() {
         }
         console.log(agent);
         if (agent && /^Mozilla/.test(agent)) {
-            rs = rs.replace(/<\/div><p>/, admin + getAgentInfo(agent) + '</div><p>');
+            if (userId && (userId == CONFIG.duoshuo.userId)) {
+                rs = rs.replace(/<\/div><p>/, admin + '</div><p>');
+            } else {
+                rs = rs.replace(/<\/div><p>/, admin + getAgentInfo(agent) + '</div><p>');
+            }
         }
 
         return rs;

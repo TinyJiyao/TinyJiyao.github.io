@@ -65,12 +65,12 @@ function getAgentInfo(string) {
         return separator +
             '<span class="duoshuo-ua-platform duoshuo-ua-platform-' + osName.toLowerCase() + '">' +
             '<i class="fa fa-' + osIcon + '"></i>' +
-            osName + ' '
-        '</span>' + separator +
+            osName + ' ' + osVersion +
+            '</span>' + separator +
             '<span class="duoshuo-ua-browser duoshuo-ua-browser-' + browserName.toLowerCase() + '">' +
             '<i class="fa fa-' + browserIcon + '"></i>' +
-            browserName + ' '
-        '</span>';
+            browserName + ' ' + browserVersion +
+            '</span>';
     } else {
         return separator +
             '<span class="duoshuo-ua-platform duoshuo-ua-platform-' + osName.toLowerCase() + '">' +

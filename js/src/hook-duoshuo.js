@@ -60,6 +60,7 @@ function getAgentInfo(string) {
     };
     var osIcon = iconMapping.os[osName.toLowerCase()];
     var browserIcon = iconMapping.browser[getBrowserKey()];
+    var userId = e.post.author.user_id;
 
     if (userId && (userId == CONFIG.duoshuo.userId)) {
         return separator +

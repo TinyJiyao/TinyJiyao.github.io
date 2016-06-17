@@ -1548,7 +1548,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #88ff9f;
+  background: #55ff4a;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -1586,11 +1586,11 @@ pre .javascript .function {
   margin-left: 10px;
 }
 .sidebar-nav .sidebar-nav-active {
-  color: #f22f27;
-  border-bottom-color: #f22f27;
+  color: #87daff;
+  border-bottom-color: #87daff;
 }
 .sidebar-nav .sidebar-nav-active:hover {
-  color: #f22f27;
+  color: #87daff;
 }
 .sidebar-panel {
   display: none;
@@ -1649,14 +1649,14 @@ pre .javascript .function {
   display: block;
 }
 .post-toc .nav .active > a {
-  color: #f22f27;
-  border-bottom-color: #f22f27;
+  color: #87daff;
+  border-bottom-color: #87daff;
 }
 .post-toc .nav .active-current > a {
-  color: #f22f27;
+  color: #87daff;
 }
 .post-toc .nav .active-current > a:hover {
-  color: #f22f27;
+  color: #87daff;
 }
 .footer {
   font-size: 14px;
@@ -2105,7 +2105,7 @@ a.search-result {
   padding-left: 10px;
 }
 .page-post-detail .sidebar-toggle-line {
-  background: #f22f27;
+  background: #87daff;
 }
 .page-post-detail .comments {
   overflow: hidden;

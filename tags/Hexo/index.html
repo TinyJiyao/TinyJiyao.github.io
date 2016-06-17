@@ -105,7 +105,7 @@
     motion: true,
     duoshuo: {
       userId: 6297046180597597000,
-      author: '老大'
+      author: '博主'
     }
   };
 </script>
@@ -511,7 +511,11 @@
       var ds = document.createElement('script');
       ds.type = 'text/javascript';ds.async = true;
       ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      /*ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';*/
+      
+      /*自己配置的 embed.js 链接*/
+      ds.src = 'https://tinyjiyao.github.io/js/embed.js';
+      
       ds.charset = 'UTF-8';
       (document.getElementsByTagName('head')[0]
       || document.getElementsByTagName('body')[0]).appendChild(ds);

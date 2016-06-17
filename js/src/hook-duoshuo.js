@@ -18,7 +18,7 @@ function hookTemplate() {
         if (userId && (userId == CONFIG.duoshuo.userId)) {
             admin = '<span class="duoshuo-ua-admin">' + CONFIG.duoshuo.author + '</span>';
         }
-        console.log(agent);
+
         if (agent && /^Mozilla/.test(agent)) {
             if (userId && (userId == CONFIG.duoshuo.userId)) {
                 rs = rs.replace(/<\/div><p>/, admin + '</div><p>');

@@ -61,15 +61,27 @@ function getAgentInfo(string) {
     var osIcon = iconMapping.os[osName.toLowerCase()];
     var browserIcon = iconMapping.browser[getBrowserKey()];
 
-    return separator +
-        '<span class="duoshuo-ua-platform duoshuo-ua-platform-' + osName.toLowerCase() + '">' +
-        '<i class="fa fa-' + osIcon + '"></i>' +
-        osName + ' ' + osVersion +
+    if (userId && (userId == CONFIG.duoshuo.userId)) {
+        return separator +
+            '<span class="duoshuo-ua-platform duoshuo-ua-platform-' + osName.toLowerCase() + '">' +
+            '<i class="fa fa-' + osIcon + '"></i>' +
+            osName + ' '
         '</span>' + separator +
-        '<span class="duoshuo-ua-browser duoshuo-ua-browser-' + browserName.toLowerCase() + '">' +
-        '<i class="fa fa-' + browserIcon + '"></i>' +
-        browserName + ' ' + browserVersion +
+            '<span class="duoshuo-ua-browser duoshuo-ua-browser-' + browserName.toLowerCase() + '">' +
+            '<i class="fa fa-' + browserIcon + '"></i>' +
+            browserName + ' '
         '</span>';
+    } else {
+        return separator +
+            '<span class="duoshuo-ua-platform duoshuo-ua-platform-' + osName.toLowerCase() + '">' +
+            '<i class="fa fa-' + osIcon + '"></i>' +
+            osName + ' ' + osVersion +
+            '</span>' + separator +
+            '<span class="duoshuo-ua-browser duoshuo-ua-browser-' + browserName.toLowerCase() + '">' +
+            '<i class="fa fa-' + browserIcon + '"></i>' +
+            browserName + ' ' + browserVersion +
+            '</span>';
+    }
 
     function getBrowserKey() {
         var key = browserName.toLowerCase();

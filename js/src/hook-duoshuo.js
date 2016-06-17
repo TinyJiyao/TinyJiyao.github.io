@@ -18,7 +18,7 @@ function hookTemplate() {
         if (userId && (userId == CONFIG.duoshuo.userId)) {
             admin = '<span class="duoshuo-ua-admin">' + CONFIG.duoshuo.author + '</span>';
         }
-
+        console.log(agent);
         if (agent && /^Mozilla/.test(agent)) {
             rs = rs.replace(/<\/div><p>/, admin + getAgentInfo(agent) + '</div><p>');
         }
@@ -60,29 +60,16 @@ function getAgentInfo(string) {
     };
     var osIcon = iconMapping.os[osName.toLowerCase()];
     var browserIcon = iconMapping.browser[getBrowserKey()];
-    var userId = e.post.author.user_id;
 
-    if (userId && (userId == CONFIG.duoshuo.userId)) {
-        return separator +
-            '<span class="duoshuo-ua-platform duoshuo-ua-platform-' + osName.toLowerCase() + '">' +
-            '<i class="fa fa-' + osIcon + '"></i>' +
-            osName + ' ' + osVersion +
-            '</span>' + separator +
-            '<span class="duoshuo-ua-browser duoshuo-ua-browser-' + browserName.toLowerCase() + '">' +
-            '<i class="fa fa-' + browserIcon + '"></i>' +
-            browserName + ' ' + browserVersion +
-            '</span>';
-    } else {
-        return separator +
-            '<span class="duoshuo-ua-platform duoshuo-ua-platform-' + osName.toLowerCase() + '">' +
-            '<i class="fa fa-' + osIcon + '"></i>' +
-            osName + ' ' + osVersion +
-            '</span>' + separator +
-            '<span class="duoshuo-ua-browser duoshuo-ua-browser-' + browserName.toLowerCase() + '">' +
-            '<i class="fa fa-' + browserIcon + '"></i>' +
-            browserName + ' ' + browserVersion +
-            '</span>';
-    }
+    return separator +
+        '<span class="duoshuo-ua-platform duoshuo-ua-platform-' + osName.toLowerCase() + '">' +
+        '<i class="fa fa-' + osIcon + '"></i>' +
+        osName + ' ' + osVersion +
+        '</span>' + separator +
+        '<span class="duoshuo-ua-browser duoshuo-ua-browser-' + browserName.toLowerCase() + '">' +
+        '<i class="fa fa-' + browserIcon + '"></i>' +
+        browserName + ' ' + browserVersion +
+        '</span>';
 
     function getBrowserKey() {
         var key = browserName.toLowerCase();

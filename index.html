@@ -353,9 +353,10 @@
             <h3 id="Goggle-搜索优化-SEO"><a href="#Goggle-搜索优化-SEO" class="headerlink" title="Goggle 搜索优化 SEO"></a>Goggle 搜索优化 SEO</h3><h3 id="Baidu-百度-搜索优化-SEO"><a href="#Baidu-百度-搜索优化-SEO" class="headerlink" title="Baidu 百度 搜索优化 SEO"></a>Baidu 百度 搜索优化 SEO</h3><p>使用百度提供的站长工具，<a href="http://www.sousuoyinqingtijiao.com/baidu/tijiao/" target="_blank" rel="external">百度站长平台</a></p>
 <ol>
 <li>第一步直接提交自己网站的链接地址；</li>
-<li>使用<a href="http://zhanzhang.baidu.com/linksubmit/index" target="_blank" rel="external">百度主动推送工具</a>；<br> 提交网站链接，验证网站属于你的，     </li>
-<li><p>百度主动推送代码，添加百度主动推送代码，让百度搜索最快发现文章，配置方法：<br> 在 尾部评论位置，添加</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (!index)&#123; %&gt;</span><br><span class="line">	&lt;script&gt;</span><br><span class="line">	(function()&#123;</span><br><span class="line">	    var bp = document.createElement('script');</span><br><span class="line">	    bp.src = '//push.zhanzhang.baidu.com/push.js';</span><br><span class="line">	    var s = document.getElementsByTagName("script")[0];</span><br><span class="line">	    s.parentNode.insertBefore(bp, s);</span><br><span class="line">	&#125;)();</span><br><span class="line">	&lt;/script&gt;     </span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+<li><p>使用<a href="http://zhanzhang.baidu.com/linksubmit/index" target="_blank" rel="external">百度主动推送工具</a>；<br> 提交网站链接，验证网站属于你的，上传百度要求的验证文件到网站根目录</p>
+</li>
+<li><p>添加百度主动推送代码，添加百度主动推送代码，让百度搜索最快发现文章，配置方法：<br> 在 尾部评论位置，添加</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (!index)&#123; %&gt;</span><br><span class="line">	&lt;script&gt;</span><br><span class="line">	(function()&#123;</span><br><span class="line">	    var bp = document.createElement('script');</span><br><span class="line">	    var curProtocol = window.location.protocol.split(':')[0];</span><br><span class="line">	    if (curProtocol === 'https') &#123;</span><br><span class="line">	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        </span><br><span class="line">	    &#125;</span><br><span class="line">	    else &#123;</span><br><span class="line">	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';</span><br><span class="line">	    &#125;</span><br><span class="line">	    var s = document.getElementsByTagName("script")[0];</span><br><span class="line">	    s.parentNode.insertBefore(bp, s);</span><br><span class="line">	&#125;)();</span><br><span class="line">	&lt;/script&gt;   </span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
 <p> 之后每次用户访问文章，都会调用推送代码</p>
 </li>
 </ol>
@@ -1201,6 +1202,21 @@
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 
 </body>
 </html>

@@ -268,6 +268,186 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/20/安装Aria2/" itemprop="url">
+                  安装配置Aria2
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-20T14:04:12+08:00" content="2016-06-20">
+              2016-06-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/安装配置/" itemprop="url" rel="index">
+                    <span itemprop="name">安装配置</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/20/安装Aria2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/20/安装Aria2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="安装配置Aria2"><a href="#安装配置Aria2" class="headerlink" title="安装配置Aria2"></a>安装配置Aria2</h2><h3 id="下载安装Aria2"><a href="#下载安装Aria2" class="headerlink" title="下载安装Aria2"></a>下载安装Aria2</h3><h4 id="两种安装方式："><a href="#两种安装方式：" class="headerlink" title="两种安装方式："></a>两种安装方式：</h4><ol>
+<li>直接下载：<a href="https://aria2.github.io/" target="_blank" rel="external">官网</a>，安装完直接进入下一步；</li>
+<li>用Homebrew安装，<a href="https://app.yinxiang.com/shard/s1/nl/86132279/985a6ec1-6043-4888-8184-f5d6af76e6ce/" target="_blank" rel="external">Homebrew安装方法</a>。<blockquote>
+<p>使用Homebrew安装方法，在终端输入命令：<br><code>brew install aria2</code></p>
+</blockquote>
+</li>
+</ol>
+<h3 id="设置配置文件"><a href="#设置配置文件" class="headerlink" title="设置配置文件"></a>设置配置文件</h3><p>Aria2 提供两种方式使用，一种是直接命令行模式下载，不推荐使用这种方法，推荐使用另外一种<strong>RPC</strong> 模式，这种方式。Aria 启动之后只会安静的等待下载请求，下载完成后也只会安静的驻留后台不会自动退出。而使用<strong>RPC</strong>模式推荐做一个配置文件方便使用。我们把配置文件放在 <code>~/.aria2</code> 下，依次输入命令：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">mkdir .aria2</span><br><span class="line">cd .aria2</span><br><span class="line">touch aria2.conf</span><br></pre></td></tr></table></figure></p>
+<p>接着打开 Finder，利用 <strong>Shift+Cmd+G</strong> 进入路径：<code>~/.aria2/aria2.conf</code>，用文本编辑器打开 <code>aria2.conf</code>，将以下配置直接拷贝进去(在<strong>马克飞象</strong>中复制)：<br>&gt;</p>
+<pre><code>#用户名
+#rpc-user=user
+#密码
+#rpc-passwd=passwd
+#上面的认证方式不建议使用,建议使用下面的token方式
+#设置加密的密钥
+#rpc-secret=token
+#允许rpc
+enable-rpc=true
+#允许所有来源, web界面跨域权限需要
+rpc-allow-origin-all=true
+#允许外部访问，false的话只监听本地端口
+rpc-listen-all=true
+#RPC端口, 仅当默认端口被占用时修改
+#rpc-listen-port=6800
+#最大同时下载数(任务数), 路由建议值: 3
+max-concurrent-downloads=5
+#断点续传
+continue=true
+#同服务器连接数
+max-connection-per-server=5
+#最小文件分片大小, 下载线程数上限取决于能分出多少片, 对于小文件重要
+min-split-size=10M
+#单文件最大线程数, 路由建议值: 5
+split=10
+#下载速度限制
+max-overall-download-limit=0
+#单文件速度限制
+max-download-limit=0
+#上传速度限制
+max-overall-upload-limit=0
+#单文件速度限制
+max-upload-limit=0
+#断开速度过慢的连接
+#lowest-speed-limit=0
+#验证用，需要1.16.1之后的release版本
+#referer=*
+#文件保存路径, 默认为当前启动位置
+dir=/Users/Jiyao/Downloads
+#文件缓存, 使用内置的文件缓存, 如果你不相信Linux内核文件缓存和磁盘内置缓存时使用, 需要1.16及以上版本
+#disk-cache=0
+#另一种Linux文件缓存方式, 使用前确保您使用的内核支持此选项, 需要1.15及以上版本(?)
+#enable-mmap=true
+#文件预分配, 能有效降低文件碎片, 提高磁盘性能. 缺点是预分配时间较长
+#所需时间 none &lt; falloc ? trunc « prealloc, falloc和trunc需要文件系统和内核支持
+file-allocation=prealloc    
+</code></pre><p>```<br>&gt;</p>
+<p>默认下载路径的「/Users/xxx/Downloads」可以改为任何你想要的绝对路径。此处写为 Downloads 目录，xxx 请自行替换成你的 Mac 用户名，然后保存，退出编辑器。</p>
+<h3 id="启动RPC"><a href="#启动RPC" class="headerlink" title="启动RPC"></a>启动RPC</h3><p>在终端输入<code>aria2c --conf-path=&quot;/Users/Jiyao/.aria2/aria2.conf&quot; -D</code>，然后 aria2 就启动了，但是如何搞定百度网盘？还需要在<a href="https://chrome.google.com/webstore/detail/baiduexporter/mjaenbjdjmgolhoafkohbhhbaiedbkno" target="_blank" rel="external">这里</a>下载 Chrome 插件。</p>
+<h3 id="启动下载操作"><a href="#启动下载操作" class="headerlink" title="启动下载操作"></a>启动下载操作</h3><p>随便打开一个百度网盘的链接，会发现网页上多出一个<strong>「导出下载」</strong>按钮，点击它弹出的<strong>「ARIA2 RPC」</strong>就自动添加到你的下载队列里了，然后利用<a href="http://ziahamza.github.io/webui-aria2/" target="_blank" rel="external">这里</a>提供的网页界面管理你的下载任务，如下图所示，你可以利用图形界面进行许多操作：<br><img src="./df3799e2858883e402780fad3381efff487dd_mw_800_wm_1_wmp_3.jpg" alt="Alt text"></p>
+<p>如果你想关掉后台的 aria2，可以到活动监视器中找到 aria2c 杀掉，也可以在终端输入kill aria2之后按 Tab 键，aria2 会自动变成进程号，回车即可杀掉它。</p>
+<p>参考链接：<a href="http://sspai.com/32167" target="_blank" rel="external">Mac 上使用百度网盘很烦躁？花点时间配置 aria2 吧</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/18/Hexo-搜索引擎优化SEO/" itemprop="url">
                   Hexo 搜索引擎优化SEO
                 </a>
@@ -486,106 +666,6 @@
 <p><img src="/uploads/books/1-2.jpg" alt="一拳超人"></p>
 <p><img src="/uploads/books/1-1.jpg" alt="老师鸭蛋头"></p>
 
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/17/book/" itemprop="url">
-                  book
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-17T18:11:45+08:00" content="2016-06-17">
-              2016-06-17
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/17/book/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/17/book/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
           
         
       
@@ -1022,7 +1102,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

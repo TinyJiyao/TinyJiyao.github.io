@@ -103,8 +103,7 @@
 用Homebrew安装，Homebrew安装方法。
 使用Homebrew安装方法，在终端输入命令：brew install aria2">
 <meta property="og:image" content="http://yoursite.com/uploads/aria2WebUI.png">
-<meta property="og:image" content="http://yoursite.com/./df3799e2858883e402780fad3381efff487dd_mw_800_wm_1_wmp_3.jpg">
-<meta property="og:updated_time" content="2016-06-20T06:28:57.000Z">
+<meta property="og:updated_time" content="2016-06-20T06:33:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac下安装配置Aria2，百度云下载加速">
 <meta name="twitter:description" content="自从发现Aria2，简直开启Mac下载新世界，方便好用，下载百度云还能加速，简直不能再赞，放个Web管理界面截图
@@ -369,59 +368,13 @@
 </blockquote>
 </li>
 </ol>
-<a id="more"></a>?<br><br>### 设置配置文件<br>Aria2 提供两种方式使用，一种是直接命令行模式下载，不推荐使用这种方法，推荐使用另外一种<strong>RPC</strong> 模式，这种方式。Aria 启动之后只会安静的等待下载请求，下载完成后也只会安静的驻留后台不会自动退出。而使用<strong>RPC</strong>模式推荐做一个配置文件方便使用。我们把配置文件放在 <code>~/.aria2</code> 下，依次输入命令：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">mkdir .aria2</span><br><span class="line">cd .aria2</span><br><span class="line">touch aria2.conf</span><br></pre></td></tr></table></figure>
-<p>接着打开 Finder，利用 <strong>Shift+Cmd+G</strong> 进入路径：<code>~/.aria2/aria2.conf</code>，用文本编辑器打开 <code>aria2.conf</code>，将以下配置直接拷贝进去(在<strong>马克飞象</strong>中复制)：<br>&gt;</p>
-<pre><code>#用户名
-#rpc-user=user
-#密码
-#rpc-passwd=passwd
-#上面的认证方式不建议使用,建议使用下面的token方式
-#设置加密的密钥
-#rpc-secret=token
-#允许rpc
-enable-rpc=true
-#允许所有来源, web界面跨域权限需要
-rpc-allow-origin-all=true
-#允许外部访问，false的话只监听本地端口
-rpc-listen-all=true
-#RPC端口, 仅当默认端口被占用时修改
-#rpc-listen-port=6800
-#最大同时下载数(任务数), 路由建议值: 3
-max-concurrent-downloads=5
-#断点续传
-continue=true
-#同服务器连接数
-max-connection-per-server=5
-#最小文件分片大小, 下载线程数上限取决于能分出多少片, 对于小文件重要
-min-split-size=10M
-#单文件最大线程数, 路由建议值: 5
-split=10
-#下载速度限制
-max-overall-download-limit=0
-#单文件速度限制
-max-download-limit=0
-#上传速度限制
-max-overall-upload-limit=0
-#单文件速度限制
-max-upload-limit=0
-#断开速度过慢的连接
-#lowest-speed-limit=0
-#验证用，需要1.16.1之后的release版本
-#referer=*
-#文件保存路径, 默认为当前启动位置
-dir=/Users/Jiyao/Downloads
-#文件缓存, 使用内置的文件缓存, 如果你不相信Linux内核文件缓存和磁盘内置缓存时使用, 需要1.16及以上版本
-#disk-cache=0
-#另一种Linux文件缓存方式, 使用前确保您使用的内核支持此选项, 需要1.15及以上版本(?)
-#enable-mmap=true
-#文件预分配, 能有效降低文件碎片, 提高磁盘性能. 缺点是预分配时间较长
-#所需时间 none &lt; falloc ? trunc « prealloc, falloc和trunc需要文件系统和内核支持
-file-allocation=prealloc    
-</code></pre><p>```<br>&gt;</p>
-<p>默认下载路径的「/Users/xxx/Downloads」可以改为任何你想要的绝对路径。此处写为 Downloads 目录，xxx 请自行替换成你的 Mac 用户名，然后保存，退出编辑器。</p>
+<a id="more"></a>
+<h3 id="设置配置文件"><a href="#设置配置文件" class="headerlink" title="设置配置文件"></a>设置配置文件</h3><p>Aria2 提供两种方式使用，一种是直接命令行模式下载，不推荐使用这种方法，推荐使用另外一种<strong>RPC</strong> 模式，这种方式。Aria 启动之后只会安静的等待下载请求，下载完成后也只会安静的驻留后台不会自动退出。而使用<strong>RPC</strong>模式推荐做一个配置文件方便使用。我们把配置文件放在 <code>~/.aria2</code> 下，依次输入命令：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">mkdir .aria2</span><br><span class="line">cd .aria2</span><br><span class="line">touch aria2.conf</span><br></pre></td></tr></table></figure></p>
+<p>接着打开 Finder，利用 <strong>Shift+Cmd+G</strong> 进入路径：<code>~/.aria2/aria2.conf</code>，用文本编辑器打开 <code>aria2.conf</code>，将以下配置直接拷贝进去(在<strong>马克飞象</strong>中复制)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#用户名</span><br><span class="line">#rpc-user=user</span><br><span class="line">#密码</span><br><span class="line">#rpc-passwd=passwd</span><br><span class="line">#上面的认证方式不建议使用,建议使用下面的token方式</span><br><span class="line">#设置加密的密钥</span><br><span class="line">#rpc-secret=token</span><br><span class="line">#允许rpc</span><br><span class="line">enable-rpc=true</span><br><span class="line">#允许所有来源, web界面跨域权限需要</span><br><span class="line">rpc-allow-origin-all=true</span><br><span class="line">#允许外部访问，false的话只监听本地端口</span><br><span class="line">rpc-listen-all=true</span><br><span class="line">#RPC端口, 仅当默认端口被占用时修改</span><br><span class="line">#rpc-listen-port=6800</span><br><span class="line">#最大同时下载数(任务数), 路由建议值: 3</span><br><span class="line">max-concurrent-downloads=5</span><br><span class="line">#断点续传</span><br><span class="line">continue=true</span><br><span class="line">#同服务器连接数</span><br><span class="line">max-connection-per-server=5</span><br><span class="line">#最小文件分片大小, 下载线程数上限取决于能分出多少片, 对于小文件重要</span><br><span class="line">min-split-size=10M</span><br><span class="line">#单文件最大线程数, 路由建议值: 5</span><br><span class="line">split=10</span><br><span class="line">#下载速度限制</span><br><span class="line">max-overall-download-limit=0</span><br><span class="line">#单文件速度限制</span><br><span class="line">max-download-limit=0</span><br><span class="line">#上传速度限制</span><br><span class="line">max-overall-upload-limit=0</span><br><span class="line">#单文件速度限制</span><br><span class="line">max-upload-limit=0</span><br><span class="line">#断开速度过慢的连接</span><br><span class="line">#lowest-speed-limit=0</span><br><span class="line">#验证用，需要1.16.1之后的release版本</span><br><span class="line">#referer=*</span><br><span class="line">#文件保存路径, 默认为当前启动位置</span><br><span class="line">dir=/Users/Jiyao/Downloads</span><br><span class="line">#文件缓存, 使用内置的文件缓存, 如果你不相信Linux内核文件缓存和磁盘内置缓存时使用, 需要1.16及以上版本</span><br><span class="line">#disk-cache=0</span><br><span class="line">#另一种Linux文件缓存方式, 使用前确保您使用的内核支持此选项, 需要1.15及以上版本(?)</span><br><span class="line">#enable-mmap=true</span><br><span class="line">#文件预分配, 能有效降低文件碎片, 提高磁盘性能. 缺点是预分配时间较长</span><br><span class="line">#所需时间 none &lt; falloc ? trunc « prealloc, falloc和trunc需要文件系统和内核支持</span><br><span class="line">file-allocation=prealloc</span><br></pre></td></tr></table></figure></p>
+<p>默认下载路径的<code>「/Users/xxx/Downloads」</code>可以改为任何你想要的绝对路径。此处写为 Downloads 目录，xxx 请自行替换成你的 Mac 用户名，然后保存，退出编辑器。</p>
 <h3 id="启动RPC"><a href="#启动RPC" class="headerlink" title="启动RPC"></a>启动RPC</h3><p>在终端输入<code>aria2c --conf-path=&quot;/Users/Jiyao/.aria2/aria2.conf&quot; -D</code>，然后 aria2 就启动了，但是如何搞定百度网盘？还需要在<a href="https://chrome.google.com/webstore/detail/baiduexporter/mjaenbjdjmgolhoafkohbhhbaiedbkno" target="_blank" rel="external">这里</a>下载 Chrome 插件。</p>
-<h3 id="启动下载操作"><a href="#启动下载操作" class="headerlink" title="启动下载操作"></a>启动下载操作</h3><p>随便打开一个百度网盘的链接，会发现网页上多出一个<strong>「导出下载」</strong>按钮，点击它弹出的<strong>「ARIA2 RPC」</strong>就自动添加到你的下载队列里了，然后利用<a href="http://ziahamza.github.io/webui-aria2/" target="_blank" rel="external">这里</a>提供的网页界面管理你的下载任务，如下图所示，你可以利用图形界面进行许多操作：<br><img src="./df3799e2858883e402780fad3381efff487dd_mw_800_wm_1_wmp_3.jpg" alt="Alt text"></p>
-<p>如果你想关掉后台的 aria2，可以到活动监视器中找到 aria2c 杀掉，也可以在终端输入kill aria2之后按 Tab 键，aria2 会自动变成进程号，回车即可杀掉它。</p>
+<h3 id="启动下载操作"><a href="#启动下载操作" class="headerlink" title="启动下载操作"></a>启动下载操作</h3><p>随便打开一个百度网盘的链接，会发现网页上多出一个<strong>「导出下载」</strong>按钮，点击它弹出的<strong>「ARIA2 RPC」</strong>就自动添加到你的下载队列里了，然后利用<a href="http://ziahamza.github.io/webui-aria2/" target="_blank" rel="external">这里</a>提供的网页界面管理你的下载任务。</p>
+<p>如果你想关掉后台的 <code>aria2</code>，可以到活动监视器中找到 aria2c 杀掉，也可以在终端输入kill aria2之后按 Tab 键，aria2 会自动变成进程号，回车即可杀掉它。</p>
 <p>参考链接：<a href="http://sspai.com/32167" target="_blank" rel="external">Mac 上使用百度网盘很烦躁？花点时间配置 aria2 吧</a></p>
 
       
@@ -535,7 +488,7 @@ file-allocation=prealloc
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -581,7 +534,7 @@ file-allocation=prealloc
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装配置Aria2"><span class="nav-number">1.</span> <span class="nav-text">安装配置Aria2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载安装Aria2"><span class="nav-number">1.1.</span> <span class="nav-text">下载安装Aria2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#两种安装方式："><span class="nav-number">1.1.1.</span> <span class="nav-text">两种安装方式：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动RPC"><span class="nav-number">1.2.</span> <span class="nav-text">启动RPC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动下载操作"><span class="nav-number">1.3.</span> <span class="nav-text">启动下载操作</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装配置Aria2"><span class="nav-number">1.</span> <span class="nav-text">安装配置Aria2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载安装Aria2"><span class="nav-number">1.1.</span> <span class="nav-text">下载安装Aria2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#两种安装方式："><span class="nav-number">1.1.1.</span> <span class="nav-text">两种安装方式：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置配置文件"><span class="nav-number">1.2.</span> <span class="nav-text">设置配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动RPC"><span class="nav-number">1.3.</span> <span class="nav-text">启动RPC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动下载操作"><span class="nav-number">1.4.</span> <span class="nav-text">启动下载操作</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

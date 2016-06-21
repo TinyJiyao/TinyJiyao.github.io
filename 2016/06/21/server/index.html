@@ -98,7 +98,7 @@
 在实际程序中，应尽量使用$_SERVER[“HTTP_HOST”] ，比较保险和可靠参考：PHP中 HTTP_HOST 和 SERVER_NAME 的区别
 
 1$_SERVER[&apos;HTTP_CONNECTION&apos;] = &apos;keep-al">
-<meta property="og:updated_time" content="2016-06-21T07:21:25.000Z">
+<meta property="og:updated_time" content="2016-06-21T09:23:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP $_SERVER 内容学习记录">
 <meta name="twitter:description" content="Http 头部的内容1$_SERVER[&apos;HTTP_HOST&apos;] = &apos;localhost&apos; #在HTTP/1.1协议规范下，会根据客户端的HTTP请求输出信息
@@ -354,7 +354,7 @@
 <p>在实际程序中，应尽量使用$_SERVER[“HTTP_HOST”] ，比较保险和可靠<br>参考：<a href="http://mimiz.cn/index.php/php/php-http_host-server_name-difference/" target="_blank" rel="external">PHP中 HTTP_HOST 和 SERVER_NAME 的区别</a></p>
 </blockquote>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$_SERVER[<span class="string">'HTTP_CONNECTION'</span>] = <span class="string">'keep-alive'</span> <span class="comment">#当前请求的 Connection: 头部的内容</span></span><br></pre></td></tr></table></figure>
-<p>当使用<code>Keep-Alive</code>模式（又称持久连接、连接重用）时，<code>Keep-Alive</code>功能使客户端到服 务器端的连接持续有效，当出现对服务器的后继请求时，<code>Keep-Alive</code>功能避免了建立或者重新建立连接</p>
+<p>当使用<code>Keep-Alive</code>模式（又称持久连接、连接重用）时，<code>Keep-Alive</code>功能使客户端到服 务器端的连接持续有效，当出现对服务器的后继请求时，<code>Keep-Alive</code>功能避免了建立或者重新建立连接<br><a id="more"></a></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$_SERVER[<span class="string">'HTTP_CACHE_CONTROL'</span>] = <span class="string">'max-age=0'</span> <span class="comment">#max-age=0 表示禁止缓存</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>参考：<a href="http://my.oschina.net/mickelfeng/blog/103180" target="_blank" rel="external">HTTP中cache-control的应用及说明</a></p>

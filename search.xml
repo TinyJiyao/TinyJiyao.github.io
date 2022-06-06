@@ -1,8 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hexo 系列 - macOS 搭建 Hexo</title>
+    <url>/20211119/rebuild-and-update-Hexo/</url>
+    <content><![CDATA[<blockquote>
+<p>最近打算将写博客的事情捡起来，打算将 16 年搭建的 Hexo 升级更新下，之前版本太旧，已经不兼容，需要重新部署。顺便研究了下 GitHub 自动部署，实现 markdown 提交后自动构建、部署至 GitHub Page。</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="重新搭建-Hexo"><a href="#重新搭建-Hexo" class="headerlink" title="重新搭建 Hexo"></a>重新搭建 Hexo</h2><blockquote>
+<p>本次搭建使用的版本如下，供参考<br>hexo: 5.4.0（hexo-cli: 4.3.0）<br>node: 14.15.4<br>hexo 主题 NexT: version 8.8.1<br>运行环境：macOS Monterey 12.1 Beta</p>
+</blockquote>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
+<li>熟悉 Git 常规操作</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tLw=="> GitHub<i class="fa fa-external-link-alt"></i></span> 账号，了解 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tLw==">GitHub<i class="fa fa-external-link-alt"></i></span> 常规操作，使用 GitHub pages 部署播客</li>
+<li> Markdown 编辑器，本文使用的 <span class="exturl" data-url="aHR0cHM6Ly96aC5td2ViLmltL2luZGV4Lmh0bWw=">MWeb<i class="fa fa-external-link-alt"></i></span>，可自定义发布功能</li>
+</ul>
+<h3 id="Hexo-环境搭建"><a href="#Hexo-环境搭建" class="headerlink" title="Hexo 环境搭建"></a>Hexo 环境搭建</h3><p>安装简单，直接跟着官方文档<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv"> Documentation | Hexo<i class="fa fa-external-link-alt"></i></span>，逐步安装即可，一般没什么问题，主要步骤：</p>
+<ol>
+<li>安装 Git、Node</li>
+<li> 安装 Hexo <code>npm install -g hexo-cli</code></li>
+</ol>
+<blockquote>
+<p>注：官网有中文文档，但内容较老，建议直接参考英文文档</p>
+</blockquote>
+<h3 id="Hexo-项目初始化"><a href="#Hexo-项目初始化" class="headerlink" title="Hexo 项目初始化"></a>Hexo 项目初始化</h3><p>创建空文件夹并初始化，在 Terminal 依次运行以下命令：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">hexo init &lt;folder&gt; <span class="comment"># &lt;folder&gt; 为文件夹名称</span></span><br><span class="line"><span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">npm install </span><br></pre></td></tr></tbody></table></figure>
+<p>安装完成后，<code>&lt;folder&gt;</code> 文件夹中结构如下：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml   <span class="comment"># 配置文件</span></span><br><span class="line">├── package.json  <span class="comment"># 项目信息及依赖包管理的配置文件</span></span><br><span class="line">├── scaffolds     <span class="comment"># markdown文件模板</span></span><br><span class="line">├── <span class="built_in">source</span>        <span class="comment"># markdown文件</span></span><br><span class="line">|   ├── _drafts   <span class="comment"># 草稿</span></span><br><span class="line">|   └── _posts    <span class="comment"># 发布</span></span><br><span class="line">├── themes        <span class="comment"># 主题</span></span><br><span class="line">├── node_modules  <span class="comment"># 依赖组件，无需提交至git仓库，根据 package.json 配置安装内容</span></span><br><span class="line">└── public        <span class="comment"># 存放构建产出的静态内容，用于博客展示，无需提交至 Git 仓库</span></span><br></pre></td></tr></tbody></table></figure>
+<p><code>_config.yml</code> 配置文件的详细内容参考文档<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvY29uZmlndXJhdGlvbg=="> Configuration | Hexo<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Hexo-本地预览"><a href="#Hexo-本地预览" class="headerlink" title="Hexo 本地预览"></a>Hexo 本地预览</h3><p><code>source/_posts</code> 中默认已有一篇文章，可直接运行以下命令：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">hexo generate <span class="comment"># 生成静态文件</span></span><br><span class="line">hexo server   <span class="comment"># 运行本地服务，用于本地预览</span></span><br></pre></td></tr></tbody></table></figure>
+<p>顺利的话 <code>hexo server</code> 会返回以下内容，直接打开链接 <code>http://localhost:4000</code>，即可在本地预览</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br></pre></td></tr></tbody></table></figure>
+<p>其他常用命令可参考文档<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvY29tbWFuZHM="> Commands | Hexo<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><blockquote>
+<p>Hexo 需要将生成的静态文件发布至博客服务器，可以是自己的本地或云服务器，也可以使用第三方托管服务。</p>
+</blockquote>
+<p>我本次使用的 <span class="exturl" data-url="aHR0cHM6Ly9wYWdlcy5naXRodWIuY29tLw==">GitHub Pages<i class="fa fa-external-link-alt"></i></span> 托管服务。</p>
+<h3 id="部署至-GitHub"><a href="#部署至-GitHub" class="headerlink" title="部署至 GitHub"></a>部署至 GitHub</h3><blockquote>
+<p>先解释下，一个 <strong>Hexo</strong> 实际分为 2 个部分，<strong>内部项目</strong>、<strong>博客项目</strong>：</p>
+<ul>
+<li><strong>内部项目</strong>：存放 <strong>Hexo</strong> 项目本身（包含各种组件、插件、主题与相应的配置），还包含博客文章的载体：markdown 文件，后续书写的文章也存放在这里；</li>
+<li><strong>博客项目</strong>：存放项目构建 (<code>hexo generate</code>) 后的产物，用于博客页面展示（根据 <strong>内部项目</strong> 的配置及主题样式，将 markdown 文件转化为 html、js、css 等文件，即静态网页，可直接在浏览器显示，也就是我们对外公开展示的博客内容），一般存放于 <code>public</code> 目录。</li>
+</ul>
+<p>建议将这 2 部分分开存档管理，配置简单，结构分明。放一起管理也可以，详细可参考官方文档。</p>
+</blockquote>
+<p>所以，我们需要创建 2 个 GitHub 仓库：</p>
+<ul>
+<li>存放 Hexo <strong>内部项目</strong>内容，我们称为 <strong>Hexo 项目仓库</strong>；<br>  创建仓库后，将<strong>内部项目</strong>内容提交至仓库，一方面便于备份与版本管理，另一方面用于后续的自动部署。</li>
+<li>存放<strong>内部项目</strong>的部署内容，配置 GitHub Pages，我们称为 <strong>博客页面仓库</strong>。</li>
+</ul>
+<p>创建完仓库后，拷贝仓库地址（<span class="exturl" data-url="bWFpbHRvOiYjMTAzOyYjMTA1OyYjeDc0OyYjeDQwOyYjMTAzOyYjMTA1OyYjMTE2OyYjeDY4OyYjeDc1OyYjOTg7JiN4MmU7JiN4NjM7JiN4NmY7JiN4NmQ7">git@github.com<i class="fa fa-external-link-alt"></i></span>:********），配置 Hexo 的发布参数：</p>
+<ul>
+<li>打开<strong>内部项目</strong>的<code>_config.yml</code> 文件，搜索 <code>deploy</code>，配置如下：  <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    <span class="built_in">type</span>: <span class="string">'git'</span></span><br><span class="line">    repo: <span class="string">'git@github.com:***/******.git'</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li>运行 <code>hexo deploy</code>，执行成功后，静态文件将推送至 GitHub，打开 GitHub Pages 域名即可</li>
+</ul>
+<p>到这里就完成了 Hexo 的搭建工作。<br>后续会再整理 GitHub Action 的自动部署，减少重复的部署工作，只需要将编写的 Markdown 文章推送至 GitHub 即可触发自动部署。还有 Hexo 的推荐配置、主题、插件等。</p>
+<hr>
+<h2 id="参考信息"><a href="#参考信息" class="headerlink" title="参考信息"></a>参考信息</h2><p><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">Documentation | Hexo<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9saWd1YW5naGUuZ2l0aHViLmlvLzIwMTcvMTEvMDYvYmxvZ1JlYnVpbHQv">hexo 博客的神坑及本质原因 | Li Guanghe’s blog<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>日常</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>GitHub</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>收到 GoogleVoice 的回收邮件，IFTTT 搭配 Gmail，定时主动发信息保活</title>
-    <url>/2022/01/24/googlevoice-autoreplay-sms/</url>
+    <url>/20220124/googlevoice-autoreplay-sms/</url>
     <content><![CDATA[<blockquote>
 <p>摘要：突然收到 Google Voice 回收邮件，看来是定时被动呼叫保活没用了。重新找了个方案，配置 IFTTT 定时发送信息，配合 Gmail 自动回复，实现定时主动发送信息，保活成功～</p>
 </blockquote>
@@ -71,76 +139,8 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo 系列 - macOS 搭建 Hexo</title>
-    <url>/2021/11/19/rebuild-and-update-Hexo/</url>
-    <content><![CDATA[<blockquote>
-<p>最近打算将写博客的事情捡起来，打算将 16 年搭建的 Hexo 升级更新下，之前版本太旧，已经不兼容，需要重新部署。顺便研究了下 GitHub 自动部署，实现 markdown 提交后自动构建、部署至 GitHub Page。</p>
-</blockquote>
-<span id="more"></span>
-
-<h2 id="重新搭建-Hexo"><a href="#重新搭建-Hexo" class="headerlink" title="重新搭建 Hexo"></a>重新搭建 Hexo</h2><blockquote>
-<p>本次搭建使用的版本如下，供参考<br>hexo: 5.4.0（hexo-cli: 4.3.0）<br>node: 14.15.4<br>hexo 主题 NexT: version 8.8.1<br>运行环境：macOS Monterey 12.1 Beta</p>
-</blockquote>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
-<li>熟悉 Git 常规操作</li>
-<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tLw=="> GitHub<i class="fa fa-external-link-alt"></i></span> 账号，了解 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tLw==">GitHub<i class="fa fa-external-link-alt"></i></span> 常规操作，使用 GitHub pages 部署播客</li>
-<li> Markdown 编辑器，本文使用的 <span class="exturl" data-url="aHR0cHM6Ly96aC5td2ViLmltL2luZGV4Lmh0bWw=">MWeb<i class="fa fa-external-link-alt"></i></span>，可自定义发布功能</li>
-</ul>
-<h3 id="Hexo-环境搭建"><a href="#Hexo-环境搭建" class="headerlink" title="Hexo 环境搭建"></a>Hexo 环境搭建</h3><p>安装简单，直接跟着官方文档<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv"> Documentation | Hexo<i class="fa fa-external-link-alt"></i></span>，逐步安装即可，一般没什么问题，主要步骤：</p>
-<ol>
-<li>安装 Git、Node</li>
-<li> 安装 Hexo <code>npm install -g hexo-cli</code></li>
-</ol>
-<blockquote>
-<p>注：官网有中文文档，但内容较老，建议直接参考英文文档</p>
-</blockquote>
-<h3 id="Hexo-项目初始化"><a href="#Hexo-项目初始化" class="headerlink" title="Hexo 项目初始化"></a>Hexo 项目初始化</h3><p>创建空文件夹并初始化，在 Terminal 依次运行以下命令：</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">hexo init &lt;folder&gt; <span class="comment"># &lt;folder&gt; 为文件夹名称</span></span><br><span class="line"><span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">npm install </span><br></pre></td></tr></tbody></table></figure>
-<p>安装完成后，<code>&lt;folder&gt;</code> 文件夹中结构如下：</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml   <span class="comment"># 配置文件</span></span><br><span class="line">├── package.json  <span class="comment"># 项目信息及依赖包管理的配置文件</span></span><br><span class="line">├── scaffolds     <span class="comment"># markdown文件模板</span></span><br><span class="line">├── <span class="built_in">source</span>        <span class="comment"># markdown文件</span></span><br><span class="line">|   ├── _drafts   <span class="comment"># 草稿</span></span><br><span class="line">|   └── _posts    <span class="comment"># 发布</span></span><br><span class="line">├── themes        <span class="comment"># 主题</span></span><br><span class="line">├── node_modules  <span class="comment"># 依赖组件，无需提交至git仓库，根据 package.json 配置安装内容</span></span><br><span class="line">└── public        <span class="comment"># 存放构建产出的静态内容，用于博客展示，无需提交至 Git 仓库</span></span><br></pre></td></tr></tbody></table></figure>
-<p><code>_config.yml</code> 配置文件的详细内容参考文档<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvY29uZmlndXJhdGlvbg=="> Configuration | Hexo<i class="fa fa-external-link-alt"></i></span></p>
-<h3 id="Hexo-本地预览"><a href="#Hexo-本地预览" class="headerlink" title="Hexo 本地预览"></a>Hexo 本地预览</h3><p><code>source/_posts</code> 中默认已有一篇文章，可直接运行以下命令：</p>
-<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">hexo generate <span class="comment"># 生成静态文件</span></span><br><span class="line">hexo server   <span class="comment"># 运行本地服务，用于本地预览</span></span><br></pre></td></tr></tbody></table></figure>
-<p>顺利的话 <code>hexo server</code> 会返回以下内容，直接打开链接 <code>http://localhost:4000</code>，即可在本地预览</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br></pre></td></tr></tbody></table></figure>
-<p>其他常用命令可参考文档<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvY29tbWFuZHM="> Commands | Hexo<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><blockquote>
-<p>Hexo 需要将生成的静态文件发布至博客服务器，可以是自己的本地或云服务器，也可以使用第三方托管服务。</p>
-</blockquote>
-<p>我本次使用的 <span class="exturl" data-url="aHR0cHM6Ly9wYWdlcy5naXRodWIuY29tLw==">GitHub Pages<i class="fa fa-external-link-alt"></i></span> 托管服务。</p>
-<h3 id="部署至-GitHub"><a href="#部署至-GitHub" class="headerlink" title="部署至 GitHub"></a>部署至 GitHub</h3><blockquote>
-<p>先解释下，一个 <strong>Hexo</strong> 实际分为 2 个部分，<strong>内部项目</strong>、<strong>博客项目</strong>：</p>
-<ul>
-<li><strong>内部项目</strong>：存放 <strong>Hexo</strong> 项目本身（包含各种组件、插件、主题与相应的配置），还包含博客文章的载体：markdown 文件，后续书写的文章也存放在这里；</li>
-<li><strong>博客项目</strong>：存放项目构建 (<code>hexo generate</code>) 后的产物，用于博客页面展示（根据 <strong>内部项目</strong> 的配置及主题样式，将 markdown 文件转化为 html、js、css 等文件，即静态网页，可直接在浏览器显示，也就是我们对外公开展示的博客内容），一般存放于 <code>public</code> 目录。</li>
-</ul>
-<p>建议将这 2 部分分开存档管理，配置简单，结构分明。放一起管理也可以，详细可参考官方文档。</p>
-</blockquote>
-<p>所以，我们需要创建 2 个 GitHub 仓库：</p>
-<ul>
-<li>存放 Hexo <strong>内部项目</strong>内容，我们称为 <strong>Hexo 项目仓库</strong>；<br>  创建仓库后，将<strong>内部项目</strong>内容提交至仓库，一方面便于备份与版本管理，另一方面用于后续的自动部署。</li>
-<li>存放<strong>内部项目</strong>的部署内容，配置 GitHub Pages，我们称为 <strong>博客页面仓库</strong>。</li>
-</ul>
-<p>创建完仓库后，拷贝仓库地址（<span class="exturl" data-url="bWFpbHRvOiYjeDY3OyYjeDY5OyYjeDc0OyYjNjQ7JiN4Njc7JiMxMDU7JiN4NzQ7JiMxMDQ7JiN4NzU7JiN4NjI7JiN4MmU7JiM5OTsmI3g2ZjsmI3g2ZDs=">git@github.com<i class="fa fa-external-link-alt"></i></span>:********），配置 Hexo 的发布参数：</p>
-<ul>
-<li>打开<strong>内部项目</strong>的<code>_config.yml</code> 文件，搜索 <code>deploy</code>，配置如下：  <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    <span class="built_in">type</span>: <span class="string">'git'</span></span><br><span class="line">    repo: <span class="string">'git@github.com:***/******.git'</span></span><br></pre></td></tr></tbody></table></figure></li>
-<li>运行 <code>hexo deploy</code>，执行成功后，静态文件将推送至 GitHub，打开 GitHub Pages 域名即可</li>
-</ul>
-<p>到这里就完成了 Hexo 的搭建工作。<br>后续会再整理 GitHub Action 的自动部署，减少重复的部署工作，只需要将编写的 Markdown 文章推送至 GitHub 即可触发自动部署。还有 Hexo 的推荐配置、主题、插件等。</p>
-<hr>
-<h2 id="参考信息"><a href="#参考信息" class="headerlink" title="参考信息"></a>参考信息</h2><p><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">Documentation | Hexo<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9saWd1YW5naGUuZ2l0aHViLmlvLzIwMTcvMTEvMDYvYmxvZ1JlYnVpbHQv">hexo 博客的神坑及本质原因 | Li Guanghe’s blog<i class="fa fa-external-link-alt"></i></span></p>
-]]></content>
-      <categories>
-        <category>日常</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>GitHub</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Mac 数据恢复软件推荐 - Disk Drill</title>
-    <url>/2022/01/27/Mac%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90-Disk-Drill/</url>
+    <url>/20220127/Mac-Disk-Drill/</url>
     <content><![CDATA[<blockquote>
 <p>前几天老妈的 U 盘不小心格式化了，数据都没了，印象里 SetApp 有个数据恢复软件，直接搜索了下，搜到了 <strong>Disk Drill</strong>，试用了下非常好用，强烈推荐。</p>
 </blockquote>
@@ -162,27 +162,6 @@
       <tags>
         <tag>Mac</tag>
         <tag>SetApp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>养猫家庭，使用石头扫地机器人 G10s 感受</title>
-    <url>/2022/05/26/G10s/</url>
-    <content><![CDATA[<blockquote>
-<p>今年打算</p>
-</blockquote>
-<span id="more"></span>
-
-<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>与 Pro 版本差异</p>
-<p>因为家里</p>
-<p>缺点</p>
-<p>宠物</p>
-<p>App 使用体验</p>
-<p>换水</p>
-<p>脏水桶</p>
-<p>换水频率记录</p>
-]]></content>
-      <tags>
-        <tag>推荐,</tag>
       </tags>
   </entry>
 </search>

@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://tiny.jiyao.vip/2022/05/26/G10s/</loc>
+    <loc>https://tiny.jiyao.vip/20211119/rebuild-and-update-Hexo/</loc>
     
     <lastmod>2022-06-06</lastmod>
     
@@ -11,36 +11,18 @@
   </url>
   
   <url>
-    <loc>https://tiny.jiyao.vip/2022/01/24/googlevoice-autoreplay-sms/</loc>
+    <loc>https://tiny.jiyao.vip/20220124/googlevoice-autoreplay-sms/</loc>
     
-    <lastmod>2022-02-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://tiny.jiyao.vip/2022/01/27/Mac%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90-Disk-Drill/</loc>
-    
-    <lastmod>2022-01-27</lastmod>
+    <lastmod>2022-06-06</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://tiny.jiyao.vip/2021/11/19/rebuild-and-update-Hexo/</loc>
+    <loc>https://tiny.jiyao.vip/20220127/Mac-Disk-Drill/</loc>
     
-    <lastmod>2022-01-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://tiny.jiyao.vip/tags/index.html</loc>
-    
-    <lastmod>2021-11-24</lastmod>
+    <lastmod>2022-06-06</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -49,7 +31,16 @@
   <url>
     <loc>https://tiny.jiyao.vip/categories/index.html</loc>
     
-    <lastmod>2021-11-22</lastmod>
+    <lastmod>2022-06-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://tiny.jiyao.vip/tags/index.html</loc>
+    
+    <lastmod>2022-06-06</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -63,20 +54,6 @@
     <priority>1.0</priority>
   </url>
 
-  
-  <url>
-    <loc>https://tiny.jiyao.vip/tags/Google/</loc>
-    <lastmod>2022-06-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://tiny.jiyao.vip/tags/IFTTT/</loc>
-    <lastmod>2022-06-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
   
   <url>
     <loc>https://tiny.jiyao.vip/tags/Hexo/</loc>
@@ -93,6 +70,20 @@
   </url>
   
   <url>
+    <loc>https://tiny.jiyao.vip/tags/Google/</loc>
+    <lastmod>2022-06-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://tiny.jiyao.vip/tags/IFTTT/</loc>
+    <lastmod>2022-06-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://tiny.jiyao.vip/tags/Mac/</loc>
     <lastmod>2022-06-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -101,13 +92,6 @@
   
   <url>
     <loc>https://tiny.jiyao.vip/tags/SetApp/</loc>
-    <lastmod>2022-06-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://tiny.jiyao.vip/tags/%E6%8E%A8%E8%8D%90/</loc>
     <lastmod>2022-06-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

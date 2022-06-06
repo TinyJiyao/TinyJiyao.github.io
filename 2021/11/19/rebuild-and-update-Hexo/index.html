@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+  <link rel="manifest" href="/images/site.webmanifest">
+  <meta name="google-site-verification" content="ooTU_wLEYmiPRs6mfrq2cKKdwoKcwkKp4ZPCxhbZnRw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tiny.jiyao.vip","root":"/","images":"/images","scheme":"Mist","darkmode":true,"version":"8.9.0","exturl":true,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="最近打算将写博客的事情捡起来，打算将 16 年搭建的 Hexo 升级更新下，之前版本太旧，已经不兼容，需要重新部署。顺便研究了下 GitHub 自动部署，实现 markdown 提交后自动构建、部署至 GitHub Page。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo 系列 - macOS 搭建 Hexo">
+<meta property="og:url" content="https://tiny.jiyao.vip/2021/11/19/rebuild-and-update-Hexo/index.html">
+<meta property="og:site_name" content="Tiny_yao">
+<meta property="og:description" content="最近打算将写博客的事情捡起来，打算将 16 年搭建的 Hexo 升级更新下，之前版本太旧，已经不兼容，需要重新部署。顺便研究了下 GitHub 自动部署，实现 markdown 提交后自动构建、部署至 GitHub Page。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-19T06:15:04.000Z">
+<meta property="article:modified_time" content="2022-01-27T06:11:55.855Z">
+<meta property="article:author" content="Jiyao">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="GitHub">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://tiny.jiyao.vip/2021/11/19/rebuild-and-update-Hexo/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tiny.jiyao.vip/2021/11/19/rebuild-and-update-Hexo/","path":"2021/11/19/rebuild-and-update-Hexo/","title":"Hexo 系列 - macOS 搭建 Hexo"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Hexo 系列 - macOS 搭建 Hexo | Tiny_yao</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://hexo-waline-ab3sg8egv-tinyjiyao.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Tiny_yao</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E6%96%B0%E6%90%AD%E5%BB%BA-Hexo"><span class="nav-number">1.</span> <span class="nav-text">重新搭建 Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">1.2.</span> <span class="nav-text">Hexo 环境搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo-%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.3.</span> <span class="nav-text">Hexo 项目初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo-%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88"><span class="nav-number">1.4.</span> <span class="nav-text">Hexo 本地预览</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%91%E5%B8%83"><span class="nav-number">2.</span> <span class="nav-text">发布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E8%87%B3-GitHub"><span class="nav-number">2.1.</span> <span class="nav-text">部署至 GitHub</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E4%BF%A1%E6%81%AF"><span class="nav-number">3.</span> <span class="nav-text">参考信息</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jiyao</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tiny.jiyao.vip/2021/11/19/rebuild-and-update-Hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jiyao">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tiny_yao">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hexo 系列 - macOS 搭建 Hexo
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-01-27 14:11:55" itemprop="dateModified" datetime="2022-01-27T14:11:55+08:00">2022-01-27</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2021/11/19/rebuild-and-update-Hexo/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/2021/11/19/rebuild-and-update-Hexo/" data-xid="/2021/11/19/rebuild-and-update-Hexo/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span id="/2021/11/19/rebuild-and-update-Hexo/" class="post-meta-item leancloud_visitors" data-flag-title="Hexo 系列 - macOS 搭建 Hexo" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>最近打算将写博客的事情捡起来，打算将 16 年搭建的 Hexo 升级更新下，之前版本太旧，已经不兼容，需要重新部署。顺便研究了下 GitHub 自动部署，实现 markdown 提交后自动构建、部署至 GitHub Page。</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="重新搭建-Hexo"><a href="#重新搭建-Hexo" class="headerlink" title="重新搭建 Hexo"></a>重新搭建 Hexo</h2><blockquote>
+<p>本次搭建使用的版本如下，供参考<br>hexo: 5.4.0（hexo-cli: 4.3.0）<br>node: 14.15.4<br>hexo 主题 NexT: version 8.8.1<br>运行环境：macOS Monterey 12.1 Beta</p>
+</blockquote>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
+<li>熟悉 Git 常规操作</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tLw=="> GitHub<i class="fa fa-external-link-alt"></i></span> 账号，了解 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tLw==">GitHub<i class="fa fa-external-link-alt"></i></span> 常规操作，使用 GitHub pages 部署播客</li>
+<li> Markdown 编辑器，本文使用的 <span class="exturl" data-url="aHR0cHM6Ly96aC5td2ViLmltL2luZGV4Lmh0bWw=">MWeb<i class="fa fa-external-link-alt"></i></span>，可自定义发布功能</li>
+</ul>
+<h3 id="Hexo-环境搭建"><a href="#Hexo-环境搭建" class="headerlink" title="Hexo 环境搭建"></a>Hexo 环境搭建</h3><p>安装简单，直接跟着官方文档<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv"> Documentation | Hexo<i class="fa fa-external-link-alt"></i></span>，逐步安装即可，一般没什么问题，主要步骤：</p>
+<ol>
+<li>安装 Git、Node</li>
+<li> 安装 Hexo <code>npm install -g hexo-cli</code></li>
+</ol>
+<blockquote>
+<p>注：官网有中文文档，但内容较老，建议直接参考英文文档</p>
+</blockquote>
+<h3 id="Hexo-项目初始化"><a href="#Hexo-项目初始化" class="headerlink" title="Hexo 项目初始化"></a>Hexo 项目初始化</h3><p>创建空文件夹并初始化，在 Terminal 依次运行以下命令：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt; <span class="comment"># &lt;folder&gt; 为文件夹名称</span></span><br><span class="line"><span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">npm install </span><br></pre></td></tr></tbody></table></figure>
+<p>安装完成后，<code>&lt;folder&gt;</code> 文件夹中结构如下：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml   <span class="comment"># 配置文件</span></span><br><span class="line">├── package.json  <span class="comment"># 项目信息及依赖包管理的配置文件</span></span><br><span class="line">├── scaffolds     <span class="comment"># markdown文件模板</span></span><br><span class="line">├── <span class="built_in">source</span>        <span class="comment"># markdown文件</span></span><br><span class="line">|   ├── _drafts   <span class="comment"># 草稿</span></span><br><span class="line">|   └── _posts    <span class="comment"># 发布</span></span><br><span class="line">├── themes        <span class="comment"># 主题</span></span><br><span class="line">├── node_modules  <span class="comment"># 依赖组件，无需提交至git仓库，根据 package.json 配置安装内容</span></span><br><span class="line">└── public        <span class="comment"># 存放构建产出的静态内容，用于博客展示，无需提交至 Git 仓库</span></span><br></pre></td></tr></tbody></table></figure>
+<p><code>_config.yml</code> 配置文件的详细内容参考文档<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvY29uZmlndXJhdGlvbg=="> Configuration | Hexo<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Hexo-本地预览"><a href="#Hexo-本地预览" class="headerlink" title="Hexo 本地预览"></a>Hexo 本地预览</h3><p><code>source/_posts</code> 中默认已有一篇文章，可直接运行以下命令：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate <span class="comment"># 生成静态文件</span></span><br><span class="line">hexo server   <span class="comment"># 运行本地服务，用于本地预览</span></span><br></pre></td></tr></tbody></table></figure>
+<p>顺利的话 <code>hexo server</code> 会返回以下内容，直接打开链接 <code>http://localhost:4000</code>，即可在本地预览</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br></pre></td></tr></tbody></table></figure>
+<p>其他常用命令可参考文档<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvY29tbWFuZHM="> Commands | Hexo<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><blockquote>
+<p>Hexo 需要将生成的静态文件发布至博客服务器，可以是自己的本地或云服务器，也可以使用第三方托管服务。</p>
+</blockquote>
+<p>我本次使用的 <span class="exturl" data-url="aHR0cHM6Ly9wYWdlcy5naXRodWIuY29tLw==">GitHub Pages<i class="fa fa-external-link-alt"></i></span> 托管服务。</p>
+<h3 id="部署至-GitHub"><a href="#部署至-GitHub" class="headerlink" title="部署至 GitHub"></a>部署至 GitHub</h3><blockquote>
+<p>先解释下，一个 <strong>Hexo</strong> 实际分为 2 个部分，<strong>内部项目</strong>、<strong>博客项目</strong>：</p>
+<ul>
+<li><strong>内部项目</strong>：存放 <strong>Hexo</strong> 项目本身（包含各种组件、插件、主题与相应的配置），还包含博客文章的载体：markdown 文件，后续书写的文章也存放在这里；</li>
+<li><strong>博客项目</strong>：存放项目构建 (<code>hexo generate</code>) 后的产物，用于博客页面展示（根据 <strong>内部项目</strong> 的配置及主题样式，将 markdown 文件转化为 html、js、css 等文件，即静态网页，可直接在浏览器显示，也就是我们对外公开展示的博客内容），一般存放于 <code>public</code> 目录。</li>
+</ul>
+<p>建议将这 2 部分分开存档管理，配置简单，结构分明。放一起管理也可以，详细可参考官方文档。</p>
+</blockquote>
+<p>所以，我们需要创建 2 个 GitHub 仓库：</p>
+<ul>
+<li>存放 Hexo <strong>内部项目</strong>内容，我们称为 <strong>Hexo 项目仓库</strong>；<br>  创建仓库后，将<strong>内部项目</strong>内容提交至仓库，一方面便于备份与版本管理，另一方面用于后续的自动部署。</li>
+<li>存放<strong>内部项目</strong>的部署内容，配置 GitHub Pages，我们称为 <strong>博客页面仓库</strong>。</li>
+</ul>
+<p>创建完仓库后，拷贝仓库地址（<span class="exturl" data-url="bWFpbHRvOiYjeDY3OyYjeDY5OyYjeDc0OyYjNjQ7JiN4Njc7JiMxMDU7JiN4NzQ7JiMxMDQ7JiN4NzU7JiN4NjI7JiN4MmU7JiM5OTsmI3g2ZjsmI3g2ZDs=">git@github.com<i class="fa fa-external-link-alt"></i></span>:********），配置 Hexo 的发布参数：</p>
+<ul>
+<li>打开<strong>内部项目</strong>的<code>_config.yml</code> 文件，搜索 <code>deploy</code>，配置如下：  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    <span class="built_in">type</span>: <span class="string">'git'</span></span><br><span class="line">    repo: <span class="string">'git@github.com:***/******.git'</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li>运行 <code>hexo deploy</code>，执行成功后，静态文件将推送至 GitHub，打开 GitHub Pages 域名即可</li>
+</ul>
+<p>到这里就完成了 Hexo 的搭建工作。<br>后续会再整理 GitHub Action 的自动部署，减少重复的部署工作，只需要将编写的 Markdown 文章推送至 GitHub 即可触发自动部署。还有 Hexo 的推荐配置、主题、插件等。</p>
+<hr>
+<h2 id="参考信息"><a href="#参考信息" class="headerlink" title="参考信息"></a>参考信息</h2><p><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">Documentation | Hexo<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9saWd1YW5naGUuZ2l0aHViLmlvLzIwMTcvMTEvMDYvYmxvZ1JlYnVpbHQv">hexo 博客的神坑及本质原因 | Li Guanghe’s blog<i class="fa fa-external-link-alt"></i></span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Jiyao
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://tiny.jiyao.vip/2021/11/19/rebuild-and-update-Hexo/" title="Hexo 系列 - macOS 搭建 Hexo">https://tiny.jiyao.vip/2021/11/19/rebuild-and-update-Hexo/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
+              <a href="/tags/GitHub/" rel="tag"><i class="fa fa-tag"></i> GitHub</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/01/24/googlevoice-autoreplay-sms/" rel="next" title="收到 GoogleVoice 的回收邮件，IFTTT 搭配 Gmail，定时主动发信息保活">
+                  收到 GoogleVoice 的回收邮件，IFTTT 搭配 Gmail，定时主动发信息保活 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><span class="exturl" data-url="aHR0cHM6Ly9iZWlhbi5taWl0Lmdvdi5jbg==">苏ICP备2022002613号 </span>
+  </div>
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jiyao</span>
+</div>
+<div class="busuanzi-count">
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://hexo-waline-ab3sg8egv-tinyjiyao.vercel.app/","placeholder":"Just go go","avatar":"mm","pageSize":10,"visitor":true,"comment_count":true,"requiredFields":[],"meta":["nick","mail","link"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/2021/11/19/rebuild-and-update-Hexo/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+</body>
+</html>

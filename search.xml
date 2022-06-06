@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>收到 GoogleVoice 的回收邮件，IFTTT 搭配 Gmail，定时主动发信息保活</title>
+    <url>/2022/01/24/googlevoice-autoreplay-sms/</url>
+    <content><![CDATA[<blockquote>
+<p>摘要：突然收到 Google Voice 回收邮件，看来是定时被动呼叫保活没用了。重新找了个方案，配置 IFTTT 定时发送信息，配合 Gmail 自动回复，实现定时主动发送信息，保活成功～</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="收到-Google-Voice-的回收邮件"><a href="#收到-Google-Voice-的回收邮件" class="headerlink" title="收到 Google Voice 的回收邮件"></a>收到 Google Voice 的回收邮件</h2><p>今天突然收到 Google Voice 的回收邮件，还以为是之前设置的 IFTTT 自动呼叫任务失效了，但检查了下，月初还有收到语音呼叫。又搜索了下，发现也有其他人遇到这个情况，看来定时接收被动呼叫和被动短信依然有概率收到 Google 的回收邮件，邮件内容如下：</p>
+<blockquote>
+<p>If you’d like to keep your Google Voice number ******, you will need to make calls or send text messages by 2022 年 2 月 20 日 by  <span class="exturl" data-url="aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS92b2ljZS8=">logging in<i class="fa fa-external-link-alt"></i></span>  to your account or using the Google Voice app on  <span class="exturl" data-url="aHR0cHM6Ly9wbGF5Lmdvb2dsZS5jb20vc3RvcmUvYXBwcy9kZXRhaWxzP2lkPWNvbS5nb29nbGUuYW5kcm9pZC5hcHBzLmdvb2dsZXZvaWNl">Android<i class="fa fa-external-link-alt"></i></span>  or  <span class="exturl" data-url="aHR0cHM6Ly9pdHVuZXMuYXBwbGUuY29tL2FwcC9nb29nbGUtdm9pY2UvaWQzMTg2OTg1MjQ/bXQ9OA==">iOS<i class="fa fa-external-link-alt"></i></span> .<br>Please remember that your current number will be reclaimed in 30 days unless you start using it. If the number is reclaimed, your existing messages will remain available in your account, but you will no longer be able to receive calls or text messages.</p>
+</blockquote>
+<p>看起来应该主动拨打电话或发信息就可以避免回收了。</p>
+<h2 id="主动拨打电话失败"><a href="#主动拨打电话失败" class="headerlink" title="主动拨打电话失败"></a>主动拨打电话失败</h2><p>第一时间用 Google Voice App 尝试打电话，结果失败了…… 提示需要先绑定美区手机号码，本以为又要折腾一遍，意外发现 Google Voice 的号码绑定可以跳过，设置方法如下：</p>
+<blockquote>
+<p><strong>设置</strong>→<strong>拨打和接听电话</strong>→<strong>首选 Wi-Fi 和移动数据网络</strong></p>
+</blockquote>
+<p>接下来就可以拨打电话了，拨了微软客服电话 <span class="exturl" data-url="dGVsOjEoODAwKSUyMDY0Mi03Njc2">1 (800) 642-7676<i class="fa fa-external-link-alt"></i></span>，接通挂断就行。</p>
+<h2 id="配置定期主动发送信息保活"><a href="#配置定期主动发送信息保活" class="headerlink" title="配置定期主动发送信息保活"></a>配置定期主动发送信息保活</h2><p>不过每个月打一次也挺麻烦的，所以还是搜寻了下定时主动发送信息的自动化方案。</p>
+<p>尝试了多个方案，网上很多方案都比较老了，已经失效，最终找到一个，先说下最终方案的实现思路：</p>
+<blockquote>
+<p><span class="exturl" data-url="aHR0cHM6Ly9pZnR0dC5jb20vYXBwbGV0cy9TTUdTWVB6dy1nb29nbGUtdm9pY2U=">IFTTT 定时发送信息 Applets<i class="fa fa-external-link-alt"></i></span> + Gmail 自动回复 = Google Voice 定期主动发送信息<br>配置共 4 个步骤：</p>
+</blockquote>
+<ol>
+<li>IFTTT 定时发送信息</li>
+<li> Google Voice 信息转发至 Gmail</li>
+<li> 设置 Gmail 过滤器</li>
+<li> Google Apps Script 配置实现 Gmail 自动回复</li>
+</ol>
+<p>接下来介绍下详细配置流程。</p>
+<h3 id="IFTTT-定时发送信息"><a href="#IFTTT-定时发送信息" class="headerlink" title="IFTTT 定时发送信息"></a>IFTTT 定时发送信息</h3><ol>
+<li>在这里 <span class="exturl" data-url="aHR0cHM6Ly9pZnR0dC5jb20vc21z" title="IFTTT - SMS">IFTTT-SMS&nbsp;<i class="fa fa-external-link-alt"></i></span> 完成 IFTTT 绑定 Google Voice，短信验证码完成验证；</li>
+<li>在 IFTTT 创建定时发送任务，<code>Date &amp; Time</code> + <code>SMS</code>，也可以直接使用 <span class="exturl" data-url="aHR0cHM6Ly9pZnR0dC5jb20vYXBwbGV0cy9TTUdTWVB6dy1nb29nbGUtdm9pY2U=">Google Voice 保号&nbsp;<i class="fa fa-external-link-alt"></i></span> ；</li>
+</ol>
+<h3 id="Google-Voice-信息转发至-Gmail"><a href="#Google-Voice-信息转发至-Gmail" class="headerlink" title="Google Voice 信息转发至 Gmail"></a>Google Voice 信息转发至 Gmail</h3><p>修改 Google Voice 配置，将信息转发至 Gmail，设置步骤：</p>
+<blockquote>
+<p><strong>设置</strong>→<strong>短信</strong>→<strong>将短信转发到电子邮件</strong></p>
+</blockquote>
+<p>到这里，就可以定时发送信息，并将定时信息转发至 Gmail 了，接下来看下如何实现自动回复。</p>
+<h3 id="Gmail-自动回复-Google-Voice"><a href="#Gmail-自动回复-Google-Voice" class="headerlink" title="Gmail 自动回复 Google Voice"></a>Gmail 自动回复 Google Voice</h3><p>Google Voice 支持使用 Gmail 回复信息，理论上可通过 Gmail 的邮箱自动回复实现信息的自动回复，实际实践下来，邮件是自动回复了，但信息并未成功回复，具体原因未知，问题可看<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vbWFpbC90aHJlYWQvOTA3MTU4MzAvZG9lcy10aGUtZ21haWwtdGVtcGxhdGUtc2VudC1mcm9tLWZpbHRlci1ydWxlLWRvZXMtbm90LXdvcms/aGw9ZW4=">这里<i class="fa fa-external-link-alt"></i></span>。</p>
+<p>又探索了一番，发现可以借助 Google Apps Script 完成 Gmail 自动回复，下面开始配置：</p>
+<h3 id="设置-Gmail-过滤器"><a href="#设置-Gmail-过滤器" class="headerlink" title="设置 Gmail 过滤器"></a>设置 Gmail 过滤器</h3><p>过滤器条件：<code>from:(@txt.voice.google.com)</code>，过滤后操作：跳过收件箱 + 标签 <code>Google/autoreply</code> </p>
+<blockquote>
+<p>注意：这里的标签要与下文 Google Apps Script 代码中的标签相对应。</p>
+<p>保证标签匹配且邮件为未读状态后，可以自行添加其他筛选条件，实现精准的自动回复。</p>
+</blockquote>
+<h3 id="配置-Google-Apps-Script-定时回复任务"><a href="#配置-Google-Apps-Script-定时回复任务" class="headerlink" title="配置 Google Apps Script 定时回复任务"></a>配置 Google Apps Script 定时回复任务</h3><ol>
+<li>打开 <span class="exturl" data-url="aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9ob21l">Google Apps Script<i class="fa fa-external-link-alt"></i></span>，新建项目（过程中会要求登录 Google 账号，获取 Gmail 权限），在新建项目的代码编辑器中复制下面的代码，保存并命名为 <code>Auto Replier</code>。<blockquote>
+<p>这段代码的思路是：从 Gmail 获取指定标签的未读邮件信息，循环处理，逐一回复并将邮件标记为已读。<br>标签与 <strong>sendEmail</strong> 的内容可以自行修改，标签与一会配置的 Gmail 过滤器相对应就行。</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">autoReplier</span></span>() {</span><br><span class="line">  var labelObj = GmailApp.getUserLabelByName(<span class="string">'Google/autoreply'</span>);</span><br><span class="line">  var gmailThreads;</span><br><span class="line">  var messages;</span><br><span class="line">  var sender;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (labelObj == null) {</span><br><span class="line">     <span class="built_in">return</span></span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (var gg = 0; gg &lt; labelObj.getUnreadCount(); gg++) {</span><br><span class="line">    gmailThreads = labelObj.getThreads()[gg];</span><br><span class="line">    messages = gmailThreads.getMessages();</span><br><span class="line">    <span class="keyword">for</span> (var ii = 0; ii &lt; messages.length; ii++) {</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (messages[ii].isUnread()) {</span><br><span class="line"></span><br><span class="line">        msg = messages[ii].getPlainBody();</span><br><span class="line">        // sender = messages[ii].getFrom().slice(16, 74);</span><br><span class="line">        sender = messages[ii].getFrom();</span><br><span class="line"></span><br><span class="line">        MailApp.sendEmail(sender, <span class="string">"IFTTT Auto Reply"</span>, <span class="string">"Hi, this is auto replay By Google Apps Script!"</span>);</span><br><span class="line">        messages[ii].markRead();</span><br><span class="line">        // messages[ii].moveToTrash();</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<ol start="2">
+<li>选择左侧菜单 <code>触发器</code>，添加触发器，配置如下，运行频率可自行调整。 <img src="https://image.jiyao.vip/hexo/202201252301285.png" alt="AutoReplier触发器配置" style="zoom:25%;"></li>
+</ol>
+<blockquote>
+<p>Tips：脚本调试，可以手动标记邮件的标签与阅读状态，在 Google Apps Script 中手动运行脚本。</p>
+</blockquote>
+<p>到这里就配置完毕了，可以通过修改 IFTTT 运行时间测试一下。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><span class="exturl" data-url="aHR0cHM6Ly93d3cudnBzZGF3YW5qaWEuY29tLzE0NTIuaHRtbA==">使用 IFTTT 让 Google Voice 自动回复短信来保号 - VPS 大玩家<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cDovL3d3dy5sbHlhbmcuY29tLzIwMTkvMDUvMTAvQ29uZmlndXJlJTIwQXV0byUyMFJlcGx5JTIwU01TJTIwQlklMjBHb29nbGUlMjBWb2ljZS8=">Configure Auto Reply SMS BY Google Voice | Ray<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly93d3cudjJleC5jb20vdC83NzM1MjM=">您的 Google Voice 号码 (xxx) xxx-xxxx 将在 30 天后过期&nbsp;<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>日常</category>
+      </categories>
+      <tags>
+        <tag>Google</tag>
+        <tag>IFTTT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 系列 - macOS 搭建 Hexo</title>
+    <url>/2021/11/19/rebuild-and-update-Hexo/</url>
+    <content><![CDATA[<blockquote>
+<p>最近打算将写博客的事情捡起来，打算将 16 年搭建的 Hexo 升级更新下，之前版本太旧，已经不兼容，需要重新部署。顺便研究了下 GitHub 自动部署，实现 markdown 提交后自动构建、部署至 GitHub Page。</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="重新搭建-Hexo"><a href="#重新搭建-Hexo" class="headerlink" title="重新搭建 Hexo"></a>重新搭建 Hexo</h2><blockquote>
+<p>本次搭建使用的版本如下，供参考<br>hexo: 5.4.0（hexo-cli: 4.3.0）<br>node: 14.15.4<br>hexo 主题 NexT: version 8.8.1<br>运行环境：macOS Monterey 12.1 Beta</p>
+</blockquote>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
+<li>熟悉 Git 常规操作</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tLw=="> GitHub<i class="fa fa-external-link-alt"></i></span> 账号，了解 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tLw==">GitHub<i class="fa fa-external-link-alt"></i></span> 常规操作，使用 GitHub pages 部署播客</li>
+<li> Markdown 编辑器，本文使用的 <span class="exturl" data-url="aHR0cHM6Ly96aC5td2ViLmltL2luZGV4Lmh0bWw=">MWeb<i class="fa fa-external-link-alt"></i></span>，可自定义发布功能</li>
+</ul>
+<h3 id="Hexo-环境搭建"><a href="#Hexo-环境搭建" class="headerlink" title="Hexo 环境搭建"></a>Hexo 环境搭建</h3><p>安装简单，直接跟着官方文档<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv"> Documentation | Hexo<i class="fa fa-external-link-alt"></i></span>，逐步安装即可，一般没什么问题，主要步骤：</p>
+<ol>
+<li>安装 Git、Node</li>
+<li> 安装 Hexo <code>npm install -g hexo-cli</code></li>
+</ol>
+<blockquote>
+<p>注：官网有中文文档，但内容较老，建议直接参考英文文档</p>
+</blockquote>
+<h3 id="Hexo-项目初始化"><a href="#Hexo-项目初始化" class="headerlink" title="Hexo 项目初始化"></a>Hexo 项目初始化</h3><p>创建空文件夹并初始化，在 Terminal 依次运行以下命令：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">hexo init &lt;folder&gt; <span class="comment"># &lt;folder&gt; 为文件夹名称</span></span><br><span class="line"><span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">npm install </span><br></pre></td></tr></tbody></table></figure>
+<p>安装完成后，<code>&lt;folder&gt;</code> 文件夹中结构如下：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml   <span class="comment"># 配置文件</span></span><br><span class="line">├── package.json  <span class="comment"># 项目信息及依赖包管理的配置文件</span></span><br><span class="line">├── scaffolds     <span class="comment"># markdown文件模板</span></span><br><span class="line">├── <span class="built_in">source</span>        <span class="comment"># markdown文件</span></span><br><span class="line">|   ├── _drafts   <span class="comment"># 草稿</span></span><br><span class="line">|   └── _posts    <span class="comment"># 发布</span></span><br><span class="line">├── themes        <span class="comment"># 主题</span></span><br><span class="line">├── node_modules  <span class="comment"># 依赖组件，无需提交至git仓库，根据 package.json 配置安装内容</span></span><br><span class="line">└── public        <span class="comment"># 存放构建产出的静态内容，用于博客展示，无需提交至 Git 仓库</span></span><br></pre></td></tr></tbody></table></figure>
+<p><code>_config.yml</code> 配置文件的详细内容参考文档<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvY29uZmlndXJhdGlvbg=="> Configuration | Hexo<i class="fa fa-external-link-alt"></i></span></p>
+<h3 id="Hexo-本地预览"><a href="#Hexo-本地预览" class="headerlink" title="Hexo 本地预览"></a>Hexo 本地预览</h3><p><code>source/_posts</code> 中默认已有一篇文章，可直接运行以下命令：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">hexo generate <span class="comment"># 生成静态文件</span></span><br><span class="line">hexo server   <span class="comment"># 运行本地服务，用于本地预览</span></span><br></pre></td></tr></tbody></table></figure>
+<p>顺利的话 <code>hexo server</code> 会返回以下内容，直接打开链接 <code>http://localhost:4000</code>，即可在本地预览</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br></pre></td></tr></tbody></table></figure>
+<p>其他常用命令可参考文档<span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3MvY29tbWFuZHM="> Commands | Hexo<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><blockquote>
+<p>Hexo 需要将生成的静态文件发布至博客服务器，可以是自己的本地或云服务器，也可以使用第三方托管服务。</p>
+</blockquote>
+<p>我本次使用的 <span class="exturl" data-url="aHR0cHM6Ly9wYWdlcy5naXRodWIuY29tLw==">GitHub Pages<i class="fa fa-external-link-alt"></i></span> 托管服务。</p>
+<h3 id="部署至-GitHub"><a href="#部署至-GitHub" class="headerlink" title="部署至 GitHub"></a>部署至 GitHub</h3><blockquote>
+<p>先解释下，一个 <strong>Hexo</strong> 实际分为 2 个部分，<strong>内部项目</strong>、<strong>博客项目</strong>：</p>
+<ul>
+<li><strong>内部项目</strong>：存放 <strong>Hexo</strong> 项目本身（包含各种组件、插件、主题与相应的配置），还包含博客文章的载体：markdown 文件，后续书写的文章也存放在这里；</li>
+<li><strong>博客项目</strong>：存放项目构建 (<code>hexo generate</code>) 后的产物，用于博客页面展示（根据 <strong>内部项目</strong> 的配置及主题样式，将 markdown 文件转化为 html、js、css 等文件，即静态网页，可直接在浏览器显示，也就是我们对外公开展示的博客内容），一般存放于 <code>public</code> 目录。</li>
+</ul>
+<p>建议将这 2 部分分开存档管理，配置简单，结构分明。放一起管理也可以，详细可参考官方文档。</p>
+</blockquote>
+<p>所以，我们需要创建 2 个 GitHub 仓库：</p>
+<ul>
+<li>存放 Hexo <strong>内部项目</strong>内容，我们称为 <strong>Hexo 项目仓库</strong>；<br>  创建仓库后，将<strong>内部项目</strong>内容提交至仓库，一方面便于备份与版本管理，另一方面用于后续的自动部署。</li>
+<li>存放<strong>内部项目</strong>的部署内容，配置 GitHub Pages，我们称为 <strong>博客页面仓库</strong>。</li>
+</ul>
+<p>创建完仓库后，拷贝仓库地址（<span class="exturl" data-url="bWFpbHRvOiYjeDY3OyYjeDY5OyYjeDc0OyYjNjQ7JiN4Njc7JiMxMDU7JiN4NzQ7JiMxMDQ7JiN4NzU7JiN4NjI7JiN4MmU7JiM5OTsmI3g2ZjsmI3g2ZDs=">git@github.com<i class="fa fa-external-link-alt"></i></span>:********），配置 Hexo 的发布参数：</p>
+<ul>
+<li>打开<strong>内部项目</strong>的<code>_config.yml</code> 文件，搜索 <code>deploy</code>，配置如下：  <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    <span class="built_in">type</span>: <span class="string">'git'</span></span><br><span class="line">    repo: <span class="string">'git@github.com:***/******.git'</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li>运行 <code>hexo deploy</code>，执行成功后，静态文件将推送至 GitHub，打开 GitHub Pages 域名即可</li>
+</ul>
+<p>到这里就完成了 Hexo 的搭建工作。<br>后续会再整理 GitHub Action 的自动部署，减少重复的部署工作，只需要将编写的 Markdown 文章推送至 GitHub 即可触发自动部署。还有 Hexo 的推荐配置、主题、插件等。</p>
+<hr>
+<h2 id="参考信息"><a href="#参考信息" class="headerlink" title="参考信息"></a>参考信息</h2><p><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv">Documentation | Hexo<i class="fa fa-external-link-alt"></i></span><br><span class="exturl" data-url="aHR0cHM6Ly9saWd1YW5naGUuZ2l0aHViLmlvLzIwMTcvMTEvMDYvYmxvZ1JlYnVpbHQv">hexo 博客的神坑及本质原因 | Li Guanghe’s blog<i class="fa fa-external-link-alt"></i></span></p>
+]]></content>
+      <categories>
+        <category>日常</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>GitHub</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mac 数据恢复软件推荐 - Disk Drill</title>
+    <url>/2022/01/27/Mac%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90-Disk-Drill/</url>
+    <content><![CDATA[<blockquote>
+<p>前几天老妈的 U 盘不小心格式化了，数据都没了，印象里 SetApp 有个数据恢复软件，直接搜索了下，搜到了 <strong>Disk Drill</strong>，试用了下非常好用，强烈推荐。</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="数据恢复"><a href="#数据恢复" class="headerlink" title="数据恢复"></a>数据恢复</h2><p>打开软件，插上 U 盘，选择 U 盘，再点击 <code>搜索丢失数据</code> 就可以扫描了</p>
+<img src="https://image.jiyao.vip/hexo/202201271326341.png" alt="CleanShot 2022-01-27 at 13.21.40@2x" style="zoom: 25%;">
+
+<p>扫描速度很快，扫描结果按文件类型分类展示</p>
+<img src="https://image.jiyao.vip/hexo/202201271330690.png" alt="CleanShot 2022-01-27 at 13.29.17@2x" style="zoom:25%;">
+
+<img src="https://image.jiyao.vip/hexo/202201271333338.png" alt="CleanShot 2022-01-27 at 13.32.33@2x" style="zoom:25%;">
+
+<p>可以直接选择恢复，将数据恢复至指定位置，也可以直接查看文件，手动复制，整体使用体验非常方便。</p>
+]]></content>
+      <categories>
+        <category>推荐</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+        <tag>SetApp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>养猫家庭，使用石头扫地机器人 G10s 感受</title>
+    <url>/2022/05/26/G10s/</url>
+    <content><![CDATA[<blockquote>
+<p>今年打算</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>与 Pro 版本差异</p>
+<p>因为家里</p>
+<p>缺点</p>
+<p>宠物</p>
+<p>App 使用体验</p>
+<p>换水</p>
+<p>脏水桶</p>
+<p>换水频率记录</p>
+]]></content>
+      <tags>
+        <tag>推荐,</tag>
+      </tags>
+  </entry>
+</search>
